@@ -18,6 +18,7 @@
 </div>
 <div class="row">
         {% for note in notes %}
+        <a href="{% url 'update' note.id %}">
         <div class="col-md-3">
             <div class="panel panel-deault">
                 <div class="panel-heading">
