@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import View
 
 from .models import Note
@@ -51,3 +51,12 @@ class Update(View):
         if form.is_valid():
             form.save
         return render(request, self.template_name, context)
+
+class Delete(View):
+    template_name = 'notes/delete.html'
+
+    def post(self, request, *args, **kwargs):
+        context = self.get_context_data(**kwargs)
+        note = context.get('note')
+        note.delete()
+        return redirect('index')
