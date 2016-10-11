@@ -49,10 +49,11 @@ class Update(View):
         context = self.get_context_data(**kwargs)
         form = NoteForm(request.POST, instance=context.get('note'))
         if form.is_valid():
-            form.save
+            form.save()
         return render(request, self.template_name, context)
 
-class Delete(View):
+
+class Delete(Update):
     template_name = 'notes/delete.html'
 
     def post(self, request, *args, **kwargs):
